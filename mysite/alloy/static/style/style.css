@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #171616;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+
+#menu {
+  width: 20vw;
+  height: 100vh;
+  overflow: scroll;
+  background-color: #000119;
+  display: flex;
+  align-items: initial;
+  justify-content: flex-start;
+  flex-direction: column;
+}
+
+#playground {
+  width: 60vw;
+  height: 100vh;
+  background: grey;
+  z-index: -1;
+}
+
+#properties {
+  width: 20vw;
+  height: 100vh;
+  background-color: black;
+}
+
+#toolbar {
+  width: 100vw;
+  height: 10vh;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fill {
+  width: 20vh;
+  height: 15vh;
+}
+
+.button {
+  cursor: pointer;
+  width: auto;
+  height: auto;
+  background-color: transparent;
+  box-shadow: rgba(46, 211, 240, 0.4) -1px 1px 1px;
+}/*# sourceMappingURL=style.css.map */
