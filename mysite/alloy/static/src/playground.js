@@ -4,10 +4,10 @@ const ZOOM_SPEED = 0.1;
 let isOnDiv = false;
 
 if (playground.parentNode.matches(":hover")) {
-    console.log("true");
+    // console.log("true");
     isOnDiv = true;
 } else {
-    console.log("false");
+    // console.log("false");
     isOnDiv = false;
 }
 document.addEventListener("wheel", function(e) {  

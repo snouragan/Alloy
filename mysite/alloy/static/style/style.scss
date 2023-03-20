@@ -22,7 +22,7 @@ body {
     width: 20vw;
     height: 100vh;
 
-    overflow: scroll;
+    overflow-y: scroll;
     background-color: $background-color;
 
     display: flex;
@@ -43,6 +43,10 @@ body {
     // background-image: radial-gradient(circle, #000000 1px, rgba(0, 0, 0, 0) 1px);
 
     z-index: -1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #properties {
