@@ -26,10 +26,6 @@ body {
   width: 60vw;
   height: 100vh;
   background: grey;
-  z-index: -1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 #properties {
@@ -55,10 +51,21 @@ body {
   height: 15vh;
 }
 
+.playground.fill {
+  position: absolute;
+  top: 0;
+  left: 20vw;
+}
+
 .button {
   cursor: pointer;
   width: auto;
   height: auto;
   background-color: transparent;
   box-shadow: rgba(46, 211, 240, 0.4) -1px 1px 1px;
+}
+
+#test {
+  width: 100px;
+  height: 100px;
 }/*# sourceMappingURL=style.css.map */

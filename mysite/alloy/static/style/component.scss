@@ -19,6 +19,10 @@
     user-select: none;
 }
 
+.component.live{
+    position: absolute;
+}
+
 .sine::after {
     content: "SINE";
 }

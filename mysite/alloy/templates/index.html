@@ -15,7 +15,7 @@
     <title>Alloy</title>
 </head>
 <body>
-    <div id="toolbar">
+    <!-- <div id="toolbar">
         <svg version="1.0" xmlns="http://www.w3.org/2000/svg"
  width="200.000000pt" height="7 3.000000pt" viewBox="0 0 900.000000 293.000000"
  preserveAspectRatio="xMidYMid meet">
@@ -99,9 +99,9 @@ fill="#000000" stroke="none">
 </g>
 </svg>
         <div id="title">ALLOY</div>
-    </div>
+    </div> -->
     <div id="menu">
-        <div class="fill"></div>
+        <!-- <div class="fill"></div> -->
         <div class="bar">
             <div class="button">COMPONENTS</div>
         </div>
@@ -137,10 +137,14 @@ fill="#000000" stroke="none">
             <div class="component"></div>
         </div>
     </div>
-    <div id="playground"></div>
+    <div id="playground" class="playground" onmouseover="setHoverTrue();" onmouseout="setHoverFalse();">
+    <!-- <div class="fill"></div> -->
+    <div id="test"></div>
+    </div>
     <div id="properties"></div>
 
     <script type="text/javascript" charset="UTF-8" src="{% static 'src/menu.js' %}"></script>
     <script type="text/javascript" charset="UTF-8" src="{% static 'src/playground.js' %}"></script>
+    <script type="text/javascript" charset="UTF-8" src="{% static 'src/component.js' %}"></script>
 </body>
 </html>

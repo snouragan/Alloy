@@ -3,20 +3,25 @@ let zoom = 1;
 const ZOOM_SPEED = 0.1;
 let isOnDiv = false;
 
-if (playground.parentNode.matches(":hover")) {
+function setHoverTrue() {
     // console.log("true");
     isOnDiv = true;
-} else {
+}
+    
+function setHoverFalse() {
     // console.log("false");
     isOnDiv = false;
 }
+
+
+
 document.addEventListener("wheel", function(e) {  
     if(isOnDiv === true) {
-        if(e.deltaY > 0){    
+        if(e.deltaY > 0 && zoom > -2.5){    
             playground.style.transform = `scale(${zoom += ZOOM_SPEED})`;  
         }
-        else if(e.deltaY < 0) {    
+        else if(e.deltaY < 0 && zoom > -2.5) {    
             playground.style.transform = `scale(${zoom -= ZOOM_SPEED})`;  }
-    
     }
+
 });

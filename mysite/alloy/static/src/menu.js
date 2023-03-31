@@ -1,6 +1,6 @@
 var numberOfComponents = 0;
 
-$('.component, .display').on('dblclick', function(){
+$('.component').on('dblclick', function(){
 
     $.get("get_number_of_components", function(num) {
         numberOfComponents = num;
@@ -25,5 +25,7 @@ function appendComponent(componentClassList, componentId) {
     });
     newComponent.classList.add("live");        
     newComponent.id = componentId;
-    playground.appendChild(newComponent);
+    playground.append(newComponent);
+
+    dragElement(newComponent);
 }
