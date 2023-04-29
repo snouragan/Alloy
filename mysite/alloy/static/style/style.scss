@@ -36,7 +36,7 @@ body {
     width: 60vw;
     height: 100vh;
     
-    background: grey;
+    background: whitesmoke;
 
     // z-index: -1;
 }
@@ -86,8 +86,8 @@ body {
 }
 
 #test {
-    width: 100px;
-    height: 100px;
+    position: absolute;
 
-    
+    width: 500px;
+    height: 500px;
 }

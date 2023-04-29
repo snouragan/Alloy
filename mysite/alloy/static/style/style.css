@@ -25,7 +25,7 @@ body {
 #playground {
   width: 60vw;
   height: 100vh;
-  background: grey;
+  background: whitesmoke;
 }
 
 #properties {
@@ -66,6 +66,7 @@ body {
 }
 
 #test {
-  width: 100px;
-  height: 100px;
+  position: absolute;
+  width: 500px;
+  height: 500px;
 }/*# sourceMappingURL=style.css.map */

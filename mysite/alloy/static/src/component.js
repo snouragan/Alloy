@@ -1,3 +1,18 @@
+class Sine {
+  static numberOfComponents = 0;
+
+  constructor(id, in0="", out0="", freq="1000") {
+    this.id = id;
+    this.in0 = in0;
+    this.out0 = out0;
+    this.freq = freq;
+    Sine.numberOfComponents += 1;
+  }
+
+}
+
+
+
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     if (document.getElementById(elmnt.id + "header")) {
@@ -40,14 +55,15 @@ function dragElement(elmnt) {
   }
 
 $('#test').on('click', function(){
+  var test = this;
     $.ajax({
         url: "get_time_domain",
         type: "GET",
         success: function(data) {
-            this.innerHTML = data;
+            console.log(data);
         },
         error: function(data) {
-            
+            alert('Can`t get time domain');
         }
     }) ;
 });

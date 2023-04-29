@@ -1,20 +1,9 @@
-var numberOfComponents = 0;
+sineArray = []
 
 $('.component').on('dblclick', function(){
-
-    $.get("get_number_of_components", function(num) {
-        numberOfComponents = num;
-    });
-
-    appendComponent(this.classList, this.id + numberOfComponents);
-
-    $.ajax({
-        url: "create_component",
-        type: "POST",
-        data: {
-            id: this.id + numberOfComponents,
-        },
-    })  
+    id = "sine" + Sine.numberOfComponents;
+    sineArray.push(new Sine(id));
+    appendComponent(this.classList, id);
 
 });
 
