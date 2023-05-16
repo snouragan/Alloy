@@ -17,4 +17,5 @@ function appendComponent(componentClassList, componentId) {
     playground.append(newComponent);
 
     dragElement(newComponent);
+    analyzeComponent(newComponent);
 }

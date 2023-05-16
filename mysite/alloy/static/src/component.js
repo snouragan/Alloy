@@ -1,27 +1,35 @@
-class Sine {
+N = 10000;
+Fs = 100000;
+
+class Generator {
+  constructor(freq, amplitude, offset, phase) {
+    this.out0 = [];
+    this.freq = freq;
+    this.amplitude = amplitude;
+    this.offset = offset;
+    this.phase = phase;
+  }
+}
+
+class Sine extends Generator{
   static numberOfComponents = 0;
 
-  constructor(id, in0="", out0="", freq="1000") {
+  constructor(id, freq = 1000, amplitude = 1, offset = 0, phase = 0) {
+    super(freq, amplitude, offset, phase);
     this.id = id;
-    this.in0 = in0;
-    this.out0 = out0;
-    this.freq = freq;
     Sine.numberOfComponents += 1;
   }
 
+  transferFunction() {
+    for(let step = 0; step < N; step++) {
+      this.out0.push(amplitude * Math.sin(2*Math.PI*freq/Fs + step + phase));
+    }
+  }
 }
-
-
 
 function dragElement(elmnt) {
     var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    if (document.getElementById(elmnt.id + "header")) {
-      // if present, the header is where you move the DIV from:
-      document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
-    } else {
-      // otherwise, move the DIV from anywhere inside the DIV:
-      elmnt.onmousedown = dragMouseDown;
-    }
+    elmnt.onmousedown = dragMouseDown;
   
     function dragMouseDown(e) {
       e = e || window.event;
@@ -54,16 +62,45 @@ function dragElement(elmnt) {
     }
   }
 
-$('#test').on('click', function(){
-  var test = this;
-    $.ajax({
-        url: "get_time_domain",
-        type: "GET",
-        success: function(data) {
-            console.log(data);
-        },
-        error: function(data) {
-            alert('Can`t get time domain');
+function analyzeComponent(elmnt) {
+  elmnt.ondblclick = appendAnalysis;
+}
+
+function appendAnalysis(componentId) {
+  var newAnalysis = document.createElement('div');
+  
+  newAnalysis.classList.add("analysis");
+  newAnalysis.id = componentId + "Analysis";
+  playground.append(newAnalysis);
+  appendCanvas(newAnalysis, componentId);
+
+  dragElement(newAnalysis);
+}
+
+function appendCanvas(analysis, componentId) {
+  var newCanvas = document.createElement('canvas');
+  newCanvas.id = componentId + "Canvas";
+  analysis.append(newCanvas);
+  plot(newCanvas);
+}
+
+function plot(ctx) {
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [{
+        label: '# of Votes',
+        data: [12, 19, 3, 5, 2, 3],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
         }
-    }) ;
-});
+      }
+    }
+  });
+}
