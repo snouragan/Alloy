@@ -1,10 +1,10 @@
-sineArray = []
+var componentList = []
 
-$('.component').on('dblclick', function(){
+$('.component').on('dblclick', function(e){
+    e.preventDefault();
     id = "sine" + Sine.numberOfComponents;
-    sineArray.push(new Sine(id));
+    componentList.push(new Sine(id));
     appendComponent(this.classList, id);
-
 });
 
 function appendComponent(componentClassList, componentId) {

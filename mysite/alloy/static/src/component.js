@@ -1,13 +1,14 @@
-N = 10000;
-Fs = 100000;
+var N = 50;
 
 class Generator {
-  constructor(freq, amplitude, offset, phase) {
+  constructor(id, freq, amplitude, offset, phase) {
+    this.id = id
     this.out0 = [];
     this.freq = freq;
     this.amplitude = amplitude;
     this.offset = offset;
     this.phase = phase;
+    this.labels = [];
   }
 }
 
@@ -15,15 +16,21 @@ class Sine extends Generator{
   static numberOfComponents = 0;
 
   constructor(id, freq = 1000, amplitude = 1, offset = 0, phase = 0) {
-    super(freq, amplitude, offset, phase);
-    this.id = id;
+    super(id, freq, amplitude, offset, phase);
+    this.name = "SINE WAVE";
     Sine.numberOfComponents += 1;
+    this.transferFunction();
   }
 
   transferFunction() {
-    for(let step = 0; step < N; step++) {
-      this.out0.push(amplitude * Math.sin(2*Math.PI*freq/Fs + step + phase));
+    for(let step = 0; step < N; step=step + 0.1) {
+      this.out0.push(this.amplitude * Math.sin(2*Math.PI*this.freq + step + this.phase));
+      this.labels.push(step.toString());
     }
+  }
+
+  getId() {
+    return this.id;
   }
 }
 
@@ -63,42 +70,97 @@ function dragElement(elmnt) {
   }
 
 function analyzeComponent(elmnt) {
-  elmnt.ondblclick = appendAnalysis;
+  if(elmnt.classList.contains('live')) {
+    elmnt.ondblclick = appendAnalysis(elmnt.id);
+  }
 }
 
 function appendAnalysis(componentId) {
   var newAnalysis = document.createElement('div');
-  
   newAnalysis.classList.add("analysis");
+  newAnalysis.classList.add("resizable");
   newAnalysis.id = componentId + "Analysis";
   playground.append(newAnalysis);
+  var newResizers = document.createElement('div');
+  newResizers.classList.add("resizers");
+  newAnalysis.append(newResizers);
   appendCanvas(newAnalysis, componentId);
-
+  appendResizers(newResizers);
   dragElement(newAnalysis);
+  makeResizableDiv(newAnalysis, newResizers);
+}
+
+function appendResizers(analysis) {
+  var newResizerTL = document.createElement('div');
+  newResizerTL.classList.add("resizer");
+  newResizerTL.classList.add("top-left");
+  analysis.append(newResizerTL);
+  var newResizerTR = document.createElement('div');
+  newResizerTR.classList.add("resizer");
+  newResizerTR.classList.add("top-right");
+  analysis.append(newResizerTR);
+  var newResizerBL = document.createElement('div');
+  newResizerBL.classList.add("resizer");
+  newResizerBL.classList.add("bottom-left");
+  analysis.append(newResizerBL);
+  var newResizerBR = document.createElement('div');
+  newResizerBR.classList.add("resizer");
+  newResizerBR.classList.add("bottom-right");
+  analysis.append(newResizerBR);
 }
 
 function appendCanvas(analysis, componentId) {
   var newCanvas = document.createElement('canvas');
   newCanvas.id = componentId + "Canvas";
   analysis.append(newCanvas);
-  plot(newCanvas);
+  var component = componentList[0];
+  plot(newCanvas, component);
 }
 
-function plot(ctx) {
+function plot(ctx, component) {
+  console.log(component.out0)
   new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-      datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
-        borderWidth: 1
-      }]
+      labels: component.labels,
+      datasets: [
+        {
+          label: component.name,
+          data: component.out0,
+          fill: false,
+          cubicInterpolationMode: 'monotone',
+          tension: 0.4
+        }
+      ]
     },
     options: {
+      elements: {
+        point: {
+          radius: 0,
+          pointStyle: false
+        }
+      },
       scales: {
+        x: {
+          beginAtZero: true,
+          min: 0,
+          max: 100,
+          ticks: {
+            display: false
+          },
+          grid: {
+            display: false
+          }
+        },
         y: {
-          beginAtZero: true
+          grid: {
+            display: false
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
         }
       }
     }
