@@ -1,6 +1,6 @@
-function makeResizableDiv(div, res) {
+function makeResizableDiv(div, res, resz) {
     const element = div;
-    const resizers = res;
+    const resizers = resz;
     const minimum_size = 20;
     let original_width = 0;
     let original_height = 0;
@@ -9,10 +9,7 @@ function makeResizableDiv(div, res) {
     let original_mouse_x = 0;
     let original_mouse_y = 0;
 
-    console.log("a");
-
     for (let i = 0;i < resizers.length; i++) {
-      console.log("a");
       const currentResizer = resizers[i];
       currentResizer.addEventListener('mousedown', function(e) {
         e.preventDefault();

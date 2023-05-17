@@ -70,9 +70,11 @@ function dragElement(elmnt) {
   }
 
 function analyzeComponent(elmnt) {
-  if(elmnt.classList.contains('live')) {
-    elmnt.ondblclick = appendAnalysis(elmnt.id);
-  }
+  elmnt.addEventListener('dblclick', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    appendAnalysis(elmnt.id);
+  });
 }
 
 function appendAnalysis(componentId) {
@@ -85,9 +87,9 @@ function appendAnalysis(componentId) {
   newResizers.classList.add("resizers");
   newAnalysis.append(newResizers);
   appendCanvas(newAnalysis, componentId);
-  appendResizers(newResizers);
+  let resizers = appendResizers(newResizers);
   dragElement(newAnalysis);
-  makeResizableDiv(newAnalysis, newResizers);
+  makeResizableDiv(newAnalysis, newResizers, resizers);
 }
 
 function appendResizers(analysis) {
@@ -107,6 +109,8 @@ function appendResizers(analysis) {
   newResizerBR.classList.add("resizer");
   newResizerBR.classList.add("bottom-right");
   analysis.append(newResizerBR);
+
+  return [newResizerTL, newResizerTR, newResizerBL, newResizerBR];
 }
 
 function appendCanvas(analysis, componentId) {

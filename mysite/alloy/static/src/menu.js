@@ -2,6 +2,7 @@ var componentList = []
 
 $('.component').on('dblclick', function(e){
     e.preventDefault();
+    e.stopPropagation();
     id = "sine" + Sine.numberOfComponents;
     componentList.push(new Sine(id));
     appendComponent(this.classList, id);
