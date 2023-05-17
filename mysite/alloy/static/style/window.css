@@ -1,0 +1,10 @@
+.close {
+  width: 2vh;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: hidden;
+  background-color: red;
+}/*# sourceMappingURL=window.css.map */
