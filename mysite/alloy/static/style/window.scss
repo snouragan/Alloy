@@ -1,3 +1,5 @@
+
+
 .close {
     width: 2vh;
     aspect-ratio: 1/1;
@@ -10,4 +12,23 @@
     visibility: hidden;
 
     background-color: red;
+}
+
+.bus {
+    width: 2vh;
+    aspect-ratio: 1/1;
+
+    position: absolute;
+
+    background-color: black;
+}
+
+.bus.left {
+    top: 50%;
+    left: 0;
+}
+
+.bus.right {
+    top: 50%;
+    right: 0%;
 }

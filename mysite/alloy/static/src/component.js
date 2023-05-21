@@ -83,6 +83,7 @@ function appendAnalysis(componentId) {
   newAnalysis.classList.add("resizable");
   newAnalysis.id = componentId + "Analysis";
   playground.append(newAnalysis);
+  appendClose(newAnalysis);
   var newResizers = document.createElement('div');
   newResizers.classList.add("resizers");
   newAnalysis.append(newResizers);

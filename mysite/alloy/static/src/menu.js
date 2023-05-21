@@ -1,4 +1,6 @@
-var componentList = []
+var componentList = [];
+
+const menu = document.querySelector("#menu");
 
 $('.component').on('dblclick', function(e){
     e.preventDefault();
@@ -13,9 +15,12 @@ function appendComponent(componentClassList, componentId) {
     componentClassList.forEach(cls => {
         newComponent.classList.add(cls);        
     });
+
+    appendBus(newComponent);
+
     newComponent.classList.add("live");        
     newComponent.id = componentId;
-    playground.append(newComponent);
+    playground.prepend(newComponent);
 
     dragElement(newComponent);
     appendClose(newComponent);

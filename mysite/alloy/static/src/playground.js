@@ -1,4 +1,5 @@
 const playground = document.querySelector("#playground");
+const connectionsContainer = document.querySelector("#connectionsContainer");
 let zoom = 1;
 const ZOOM_SPEED = 0.1;
 let isOnDiv = false;

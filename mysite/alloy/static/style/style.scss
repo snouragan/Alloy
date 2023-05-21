@@ -41,6 +41,14 @@ body {
     // z-index: -1;
 }
 
+#connectionsContainer {
+    position: absolute;
+}
+line {
+    stroke:rgb(0,0,0);
+    stroke-width:3;
+}
+
 #properties {
     width: 20vw;
     height: 100vh;
